@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Files Index</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Marked.js library for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Markdown Files</h1>
+        <p>Click on a file to view its content below.</p>
+    </header>
+    <main>
+        <ul id="file-list"></ul>
+        <div id="markdown-content">
+            <p>Select a file to view its content here.</p>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const fileList = document.getElementById("file-list");
+            const contentDiv = document.getElementById("markdown-content");
+
+            const files = [
+                'ESG investing Refs with abstracts.md',
+                'RL Refs with abstracts.md',
+                'Network analysis and clustering Refs with abstracts.md',
+                'Financial derivatives.md',
+                'Portfolio constr and mngnt.md',
+                'Portfolio diversification.md',
+                'Retirement portfolios Refs with abstracts.md',
+                'Data augment and Scenario generation.md',
+                'Portfolio diversification Refs with abstracts.md',
+                'RL.md',
+                'Data augment and Scenario generation Refs with abstracts.md',
+                'Market regimes.md',
+                'Retirement portfolios.md',
+                'Forecast time series Refs with abstracts.md',
+                'Forecast time series.md',
+                'Market regimes Refs with abstracts.md',
+                'ESG investing.md',
+                'Portfolio constr and mngnt Refs with abstracts.md',
+                'Network analysis and clustering.md',
+                'Financial derivatives Refs with abstracts.md'
+            ];
+
+            files.forEach(file => {
+                const listItem = document.createElement("li");
+                const link = document.createElement("a");
+                link.href = "#"; // Placeholder link
+                link.textContent = file.replace(".md", ""); // Display name without .md extension
+
+                // Click event to load and render the markdown content
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    loadMarkdownFile(`out/${file}`);
+                });
+
+                listItem.appendChild(link);
+                fileList.appendChild(listItem);
+            });
+
+            function loadMarkdownFile(filePath) {
+                fetch(filePath)
+                    .then(response => response.text())
+                    .then(text => {
+                        contentDiv.innerHTML = marked(text); // Render Markdown to HTML
+                    })
+                    .catch(error => {
+                        contentDiv.innerHTML = `<p>Error loading file: ${filePath}</p>`;
+                        console.error("Error loading Markdown file:", error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
