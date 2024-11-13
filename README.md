@@ -2,7 +2,7 @@
 Documents and References for Quantitative Wealth &amp; Investment Management (QWIM)
 
 
-### Available website : [webpage](https://armand-morin.github.io/bofa-docs/)
+### ui : [homepage](https://armand-morin.github.io/bofa-docs/)
 
 
-*credits : cristian homescu*
+*credits to : Cristian Homescu @ BofA*
